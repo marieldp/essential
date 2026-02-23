@@ -176,13 +176,13 @@ gap: 8px !important;
 body, html { 
     margin: 0; padding: 0; 
     background-color: #e5e0d8; 
-    width: 100%;
     font-family: 'Montserrat', sans-serif; 
     color: var(--text); 
     
-    /* THE LOCK: Completely freezes the screen so the seal works perfectly */
+    /* THE LOCK */
     overflow: hidden !important; 
     height: 100vh !important;
+    overflow-x: hidden;
 }
 
 /* 2. OPEN STATE: Unlocked for the Website */
@@ -1307,6 +1307,7 @@ Questions?
 <script>
 // Add this to the very top of your script block
 if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
+window.scrollTo(0, 0);
 /* =========================================================
   TEMPLATE CONFIGURATION
   Change names, dates, links, and text here. The script 
@@ -1447,20 +1448,28 @@ function handleMusic(play, event) {
 setTimeout(() => {
         const main = document.getElementById('main-site');
         
-        // 1. Un-hide the website first so it actually has height
+        // 1. Kill any smooth scrolling so the jump is invisible
+        document.documentElement.style.scrollBehavior = 'auto';
+        
+        // 2. Un-hide the website
         if(main) main.style.display = 'block';
         
-        // 2. NOW instantly pin it to the top
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        // 3. Force the absolute top instantly
+        window.scrollTo(0, 0);
         
-        // 3. Unlock the scrolling for the user
+        // 4. Unlock the scrollbar
         document.body.classList.add('show-site');
-        document.documentElement.classList.add('show-site'); 
+
+        // 5. Bring smooth scrolling back AFTER the jump is done
+        setTimeout(() => {
+            document.documentElement.style.scrollBehavior = 'smooth';
+        }, 50);
 
         if (typeof setupMusicObserver === "function") {
             setupMusicObserver(); 
         }
-    }, 300);} /* <--- THIS WAS THE MISSING BRACKET THAT CRASHED EVERYTHING! */
+    }, 300);
+} /* <--- THIS WAS THE MISSING BRACKET THAT CRASHED EVERYTHING! */
 
 // FIND GUEST BY NAME
 function findInvitation() {
