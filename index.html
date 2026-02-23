@@ -8,7 +8,17 @@
 <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&family=Pinyon+Script&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <style>
-
+@media screen and (max-width: 600px) {
+    .envelope {
+        width: 95vw;
+        height: 70vw;
+    }
+    #envelope-label {
+        bottom: 12% !important; /* Slightly higher on mobile to avoid the edge */
+        font-size: 0.65rem;
+        letter-spacing: 3px;
+    }
+}
 #gifting img {
 width: 100% !important;
 height: 100% !important;
@@ -521,39 +531,26 @@ background-color: var(--gold);
 
 /* --- THE GUEST LABEL (On top of the pocket) --- */
 #envelope-label {
-position: absolute;
-/* This anchors it to the bottom. 10% is usually the sweet spot. */
-bottom: 5% !important; 
-left: 0;
-width: 100%;
-text-align: center;
+    position: absolute;
+    /* Adjusted bottom to 8% so it sits comfortably below the seal */
+    bottom: 8% !important; 
+    left: 0;
+    width: 100%;
+    text-align: center;
 
-/* CRITICAL: Higher than all flaps (which are usually 1-10) */
-z-index: 1000 !important; 
+    /* Keeps it above the pocket but below the seal (which is 999) */
+    z-index: 100 !important; 
 
-/* Ensure it's visible for testing */
-display: block !important;
+    /* Styles */
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: #8a8a8a;
 
-/* Styles */
-font-family: 'Montserrat', sans-serif;
-font-size: 0.7rem;
-letter-spacing: 5px;
-text-transform: uppercase;
-color: #666;
-
-/* Transition */
-opacity: 0;
-transition: opacity 1.5s ease;
-pointer-events: none;
-}
-
-#envelope-label span {
-display: block;
-font-family: 'Great Vibes', cursive;
-font-size: 2.5rem;
-color: var(--accent);
-text-transform: none;
-margin-top: 5px;
+    /* We removed opacity: 0 so it's visible by default */
+    opacity: 1; 
+    pointer-events: none;
 }
 
 /* Make sure this class is still working */
@@ -702,7 +699,7 @@ z-index: 0;
 <div class="bottom-flap" style="background-image: url('6938.jpg');"></div> 
 <div class="bottom-flap-lines"></div> 
 
-<div id="envelope-label">Fetching invitation...</div>
+<div id="envelope-label">To our beloved Guest</div>
 
 </div>
 </div>
@@ -1341,11 +1338,7 @@ const msrc = document.getElementById('config-audio'); if(msrc) msrc.src = CONFIG
 const audioEl = document.getElementById('bg-music'); if(audioEl) audioEl.load();
 
 // Init Logic
-if (token) checkGuestStatus();
-else {
-const lbl = document.getElementById('envelope-label');
-if (lbl) { lbl.innerHTML = `With love, to <span>Guest</span>`; lbl.classList.add('reveal-active'); }
-}
+
 
 const revealElements = document.querySelectorAll('.reveal-on-scroll');
 if (typeof observer !== 'undefined') revealElements.forEach(el => observer.observe(el));
