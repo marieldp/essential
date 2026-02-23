@@ -10,10 +10,9 @@
 <style>
 @media screen and (max-width: 600px) {
     #envelope-label {
-        bottom: 25% !important;
-        font-size: 1.1rem;      /* Scaled down slightly for mobile screens */
-        letter-spacing: 5px;    /* Tighter spacing for narrow screens */
-        font-weight: 700;
+        bottom: 20% !important;
+        font-size: 1.3rem;
+        letter-spacing: 1px;
     }
 }
     
@@ -530,23 +529,24 @@ background-color: var(--gold);
 /* --- THE GUEST LABEL (On top of the pocket) --- */
 #envelope-label {
     position: absolute;
-    bottom: 22% !important; /* Adjusted slightly to keep it centered vertically */
+    /* Nudging it down to sit perfectly in the lower half of the pocket */
+    bottom: 15% !important; 
     left: 0;
     width: 100%;
     text-align: center;
     z-index: 100 !important; 
 
-    /* High Impact Typography */
-    font-family: 'Montserrat', sans-serif;
-    font-size: 1.5rem;          /* Much larger (was 1.0) */
-    font-weight: 800;          /* Extra Bold (was 600) */
-    letter-spacing: 8px;       /* Wider spacing for a luxury feel */
-    text-transform: uppercase;
-    color: #333;               /* Almost black for sharpness */
+    /* New High-End Font Styling */
+    font-family: 'Playfair Display', serif; /* Elegant Serif Font */
+    font-size: 1.8rem;          /* Larger for impact */
+    font-weight: 700;          /* Bold enough to be seen */
+    font-style: italic;        /* Italics add that 'Invitation' vibe */
+    letter-spacing: 2px;       /* Tighter spacing for serifs looks better */
+    color: #043927;            /* Matching your Emerald Green theme */
 
     opacity: 1; 
     pointer-events: none;
-    line-height: 1.2;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8); /* Makes it pop against the paper */
 }
 
 /* Make sure this class is still working */
