@@ -9,16 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&family=Pinyon+Script&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <style>
 @media screen and (max-width: 600px) {
-    .envelope {
-        width: 95vw;
-        height: 70vw;
-    }
     #envelope-label {
-        bottom: 12% !important; /* Slightly higher on mobile to avoid the edge */
-        font-size: 0.65rem;
+        bottom: 22% !important; /* Higher on mobile so it doesn't hit the curve */
+        font-size: 0.85rem;      /* Slightly smaller for small screens */
         letter-spacing: 3px;
     }
 }
+    
 #gifting img {
 width: 100% !important;
 height: 100% !important;
@@ -532,23 +529,21 @@ background-color: var(--gold);
 /* --- THE GUEST LABEL (On top of the pocket) --- */
 #envelope-label {
     position: absolute;
-    /* Adjusted bottom to 8% so it sits comfortably below the seal */
-    bottom: 8% !important; 
+    /* Move it up from the bottom edge (increase this % to go higher) */
+    bottom: 18% !important; 
     left: 0;
     width: 100%;
     text-align: center;
-
-    /* Keeps it above the pocket but below the seal (which is 999) */
     z-index: 100 !important; 
 
-    /* Styles */
+    /* Typography Fixes */
     font-family: 'Montserrat', sans-serif;
-    font-size: 0.75rem;
-    letter-spacing: 4px;
+    font-size: 1rem;           /* Larger (was 0.75) */
+    font-weight: 600;          /* Thicker/Bold */
+    letter-spacing: 5px;       /* Elegant spacing */
     text-transform: uppercase;
-    color: #8a8a8a;
+    color: #444;               /* Darker gray for better contrast */
 
-    /* We removed opacity: 0 so it's visible by default */
     opacity: 1; 
     pointer-events: none;
 }
