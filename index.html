@@ -220,10 +220,7 @@ animation: fadeInName 0.8s ease forwards;
 }
 
 
-/* This targets the landing page section specifically */
-#main-site section:first-of-type {
-background-position: center 15% !important; /* Shifts the focus to the faces */
-}
+
 
 /* Decorative Paper Texture */
 .paper-texture {
@@ -674,18 +671,7 @@ clip-path: inset(0 0 0 0);
 overflow: hidden;
 background-color: #043927; /* Matches your theme for safety */
 }
-/* We move the image to a 'pseudo-element' so it's trapped inside the box */
-#main-site section:first-of-type::before {
-content: "";
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: url('1.jpg') no-repeat center top;
-background-size: cover;
-z-index: 0;
-}
+
 /* Ensure the NEXT section starts exactly where the photo ends */
 #main-site section:nth-of-type(2) {
 position: relative;
@@ -693,16 +679,16 @@ z-index: 10;
 margin-top: 0;
 }
 
-/* 1. Target the landing section specifically */
+/* The ONLY instruction for the landing section */
 #landing-hero {
-    height: 100svh !important; /* Locks height to prevent address bar jumps */
+    height: 100svh !important; /* Locks height permanently */
     width: 100%;
     position: relative;
     overflow: hidden;
     background-color: #043927;
 }
 
-/* 2. Lock the background photo to the GPU */
+/* The ONLY instruction for the photo */
 #landing-hero::before {
     content: "";
     position: absolute;
@@ -713,10 +699,7 @@ margin-top: 0;
     background: url('1.jpg') no-repeat center top;
     background-size: cover;
     z-index: 0;
-    
-    /* THE FIX: Hardware acceleration! Forces the phone to lock the image in place */
-    transform: translateZ(0); 
-    will-change: transform;
+    transform: translateZ(0); /* Freezes the pixels so they can't jump */
 }
 
 </style>
@@ -770,7 +753,7 @@ margin-top: 0;
 
 <div id="main-site" style="display:none;">
 
-<section id="landing-hero" style="position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 5vh; background-color: #043927;">
+<section id="landing-hero" style="position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; padding-top: 5svh;">
 <div class="hero-content" style="position: relative; text-align: center; z-index: 2; max-width: 90vw;">
 <h1 class="reveal-text delay-1" style="font-family: 'Great Vibes', cursive; font-size: clamp(50px, 8vw, 100px); color: #d4af37; margin: 0; line-height: 1.1; text-shadow: 2px 2px 12px rgba(0,0,0,0.6);">
 <span id="config-bride-1">Mariel</span> 
