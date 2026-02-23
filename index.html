@@ -98,10 +98,25 @@ letter-spacing: 0.5px;
 #entourage h2 {
 font-size: 42px !important;
 }
+/* 1. Desktop Default (2 Columns) */
 #dress-code div[style*="display: grid"] {
-grid-template-columns: 1fr !important; /* Stack images one by one */
-gap: 40px !important;
-padding: 0 10px;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 40px;
+}
+
+/* 2. Mobile Fix (Stacking to 1 Column) */
+@media screen and (max-width: 768px) {
+    #dress-code div[style*="display: grid"] {
+        grid-template-columns: 1fr !important; /* Forces 1 column on phones */
+        gap: 50px !important;
+    }
+    
+    /* Also stack the color palette circles nicely on mobile */
+    #dress-code div[style*="flex-wrap: wrap"] {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important; 
+        gap: 20px !important;
+    }
 }
 
 #dress-code img {
