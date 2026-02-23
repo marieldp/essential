@@ -458,10 +458,11 @@ filter: drop-shadow(0 5px 6px rgba(0,0,0,0.3));
 will-change: transform;
 transform: translateZ(0);
 }
-/* This ensures the flap stays hardware-accelerated even when fully open */
+/* When the envelope is open, the flap MUST stay open */
 .open .top-flap {
-    transform: rotateX(-180deg) translateZ(0); 
-    z-index: 0; /* Ensures it stays behind the letter when opened */
+    transform: rotateX(180deg) translateZ(1px) !important;
+    z-index: 1 !important; /* Keep it behind the letter but visibly "up" */
+    transition: none !important; /* This stops it from "animating" back to closed */
 }
 
 .open .flap-container { 
@@ -633,6 +634,8 @@ opacity: 1 !important;
 .envelope {
 width: 95vw;     /* Use almost full screen width */
 height: 70vw;    /* Make it taller (was 60vw) */
+transform-style: preserve-3d !important;
+perspective: 1000px;
 }
 
 
