@@ -173,12 +173,20 @@ gap: 8px !important;
 
 
 body, html { 
-margin: 0; padding: 0; background-color: #e5e0d8; 
-width: 100%;
-font-family: 'Montserrat', sans-serif; color: var(--text); 
-overflow-x: hidden !important; /* The 'Magic' Line */
-height: 100%; 
-position: relative;
+    margin: 0; 
+    padding: 0; 
+    background-color: #e5e0d8; 
+    width: 100%;
+    font-family: 'Montserrat', sans-serif; 
+    color: var(--text); 
+    overflow-x: hidden !important; 
+    
+    /* THE FIX: Replaced height: 100% with min-height */
+    min-height: 100vh; 
+    position: relative;
+    
+    /* Adds a buttery smooth feel when clicking links */
+    scroll-behavior: smooth; 
 }
 
 #main-site {
@@ -1551,18 +1559,26 @@ mBtn.classList.remove('playing'); // Triggers Pink BG & Stops Pulse
 const env = document.getElementById('envelope-wrapper');
 if(env) env.classList.add('wrapper-exit');
 
+// Inside your handleMusic function...
 setTimeout(() => {
-const main = document.getElementById('main-site');
-if(main) main.style.display = 'block';
-document.body.classList.add('show-site');
-document.body.style.overflow = 'auto'; 
+    const main = document.getElementById('main-site');
+    
+    // THE FIX: Force the page to scroll to the top BEFORE showing the site
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    
+    if(main) main.style.display = 'block';
+    
+    document.body.classList.add('show-site');
+    
+    // Make sure we remove any CSS scroll locks
+    document.documentElement.style.overflow = 'auto';
+    document.body.style.overflow = 'auto'; 
 
-// Starts the scroll listener to fade the button in
-if (typeof setupMusicObserver === "function") {
-setupMusicObserver(); 
-}
-}, 100);
-}
+    // Starts the scroll listener to fade the button in
+    if (typeof setupMusicObserver === "function") {
+        setupMusicObserver(); 
+    }
+}, 300); // Changed 100 to 300 to give the envelope time to start fading before the site pops in
 
 function toggleMusic() {
 const audio = document.getElementById("bg-music");
