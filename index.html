@@ -1305,6 +1305,8 @@ Questions?
 </div>
 
 <script>
+// Add this to the very top of your script block
+if ('scrollRestoration' in history) { history.scrollRestoration = 'manual'; }
 /* =========================================================
   TEMPLATE CONFIGURATION
   Change names, dates, links, and text here. The script 
@@ -1419,6 +1421,46 @@ seal.style.pointerEvents = "none";
 
 // NEW: Search for the guest by name instead of ID
 let guestData = null;
+
+function handleMusic(play, event) {
+    if (event) { event.preventDefault(); event.stopPropagation(); }
+
+    const mBtn = document.getElementById('musicBtn');
+    const audio = document.getElementById('bg-music');
+
+    if (audio) audio.currentTime = 4;
+
+    if (mBtn) {
+        mBtn.style.display = 'flex'; 
+        if (play) {
+            if (audio) audio.play().catch(e => console.log("Audio blocked"));
+            mBtn.classList.add('playing'); 
+        } else {
+            if (audio) audio.pause();
+            mBtn.classList.remove('playing'); 
+        }
+    }
+
+    const env = document.getElementById('envelope-wrapper');
+    if(env) env.classList.add('wrapper-exit');
+
+setTimeout(() => {
+        const main = document.getElementById('main-site');
+        
+        // 1. Un-hide the website first so it actually has height
+        if(main) main.style.display = 'block';
+        
+        // 2. NOW instantly pin it to the top
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        
+        // 3. Unlock the scrolling for the user
+        document.body.classList.add('show-site');
+        document.documentElement.classList.add('show-site'); 
+
+        if (typeof setupMusicObserver === "function") {
+            setupMusicObserver(); 
+        }
+    }, 300);} /* <--- THIS WAS THE MISSING BRACKET THAT CRASHED EVERYTHING! */
 
 // FIND GUEST BY NAME
 function findInvitation() {
@@ -1542,46 +1584,7 @@ function resetRSVP() {
 
   //end of copypaste
 
-function handleMusic(play, event) {
-    if (event) { event.preventDefault(); event.stopPropagation(); }
 
-    const mBtn = document.getElementById('musicBtn');
-    const audio = document.getElementById('bg-music');
-
-    if (audio) audio.currentTime = 4;
-
-    if (mBtn) {
-        mBtn.style.display = 'flex'; 
-        if (play) {
-            if (audio) audio.play().catch(e => console.log("Audio blocked"));
-            mBtn.classList.add('playing'); 
-        } else {
-            if (audio) audio.pause();
-            mBtn.classList.remove('playing'); 
-        }
-    }
-
-    const env = document.getElementById('envelope-wrapper');
-    if(env) env.classList.add('wrapper-exit');
-
-    setTimeout(() => {
-        const main = document.getElementById('main-site');
-        
-        // Wipe browser scroll memory instantly before showing the site
-        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
-        
-        if(main) main.style.display = 'block';
-        
-        // This triggers the CSS to unlock the scrolling
-        document.body.classList.add('show-site');
-        document.documentElement.classList.add('show-site'); 
-
-        // Starts the scroll listener to fade the button in
-        if (typeof setupMusicObserver === "function") {
-            setupMusicObserver(); 
-        }
-    }, 300); 
-} /* <--- THIS WAS THE MISSING BRACKET THAT CRASHED EVERYTHING! */
 
 function toggleMusic() {
 const audio = document.getElementById("bg-music");
