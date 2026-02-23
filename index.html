@@ -10,9 +10,10 @@
 <style>
 @media screen and (max-width: 600px) {
     #envelope-label {
-        bottom: 22% !important; /* Higher on mobile so it doesn't hit the curve */
-        font-size: 0.85rem;      /* Slightly smaller for small screens */
-        letter-spacing: 3px;
+        bottom: 25% !important;
+        font-size: 1.1rem;      /* Scaled down slightly for mobile screens */
+        letter-spacing: 5px;    /* Tighter spacing for narrow screens */
+        font-weight: 700;
     }
 }
     
@@ -529,23 +530,23 @@ background-color: var(--gold);
 /* --- THE GUEST LABEL (On top of the pocket) --- */
 #envelope-label {
     position: absolute;
-    /* Move it up from the bottom edge (increase this % to go higher) */
-    bottom: 18% !important; 
+    bottom: 22% !important; /* Adjusted slightly to keep it centered vertically */
     left: 0;
     width: 100%;
     text-align: center;
     z-index: 100 !important; 
 
-    /* Typography Fixes */
+    /* High Impact Typography */
     font-family: 'Montserrat', sans-serif;
-    font-size: 1rem;           /* Larger (was 0.75) */
-    font-weight: 600;          /* Thicker/Bold */
-    letter-spacing: 5px;       /* Elegant spacing */
+    font-size: 1.5rem;          /* Much larger (was 1.0) */
+    font-weight: 800;          /* Extra Bold (was 600) */
+    letter-spacing: 8px;       /* Wider spacing for a luxury feel */
     text-transform: uppercase;
-    color: #444;               /* Darker gray for better contrast */
+    color: #333;               /* Almost black for sharpness */
 
     opacity: 1; 
     pointer-events: none;
+    line-height: 1.2;
 }
 
 /* Make sure this class is still working */
