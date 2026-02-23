@@ -68,146 +68,7 @@ transform-origin: center;
 100% { transform: scale(1); }
 }
 
-/* --- BALANCED SPLIT TIMELINE --- */
-#timeline {
-position: relative;
-overflow: hidden;
-padding: 100px 20px;
-background-color: #fdf0f5;
-}
 
-.timeline-container {
-max-width: 1000px;
-margin: 0 auto;
-position: relative;
-}
-
-/* THE CENTRAL VERTICAL LINE */
-.timeline-container::before {
-content: '';
-position: absolute;
-top: 0;
-bottom: 0;
-left: 50%;
-width: 2px;
-background: #043927; /* Emerald */
-transform: translateX(-50%);
-opacity: 0.3;
-z-index: 0;
-}
-
-/* THE ROW WRAPPER */
-.timeline-row {
-display: flex;
-align-items: center;
-justify-content: space-between;
-margin-bottom: 60px; /* Reduced gap between events */
-position: relative;
-z-index: 1;
-}
-
-/* THE TWO SIDES */
-.timeline-content-side, 
-.timeline-image-side {
-width: 49%; /* INCREASED to make them closer */
-position: relative;
-}
-
-/* --- THE IMAGE SIDE --- */
-.timeline-image-side {
-display: flex;
-align-items: center;
-}
-
-/* THE IMAGE ITSELF */
-.timeline-image-side img {
-max-width: 180px; 
-max-height: 180px;
-object-fit: contain;
-
-/* 1. NO ANIMATION on the image itself */
-animation: none; 
-
-/* 2. NO FILTER (Fixes the Blue/Teal issue) */
-filter: none !important; 
-
-opacity: 1; 
-}
-
-/* THE CENTER DOT */
-.center-dot {
-position: absolute;
-left: 50%;
-top: 50%; /* Center vertically relative to the row */
-width: 16px;
-height: 16px;
-background: #d4af37; 
-border: 4px solid #F4CFE0; 
-border-radius: 50%;
-transform: translate(-50%, -50%); /* Perfectly centered */
-box-shadow: 0 0 0 5px #fcfaf7; 
-z-index: 10;
-}
-
-/* --- TYPOGRAPHY --- */
-.event-time {
-font-family: 'Montserrat', sans-serif;
-color: #d4af37; 
-font-size: 13px;
-font-weight: 700;
-letter-spacing: 2px;
-text-transform: uppercase;
-margin-bottom: 5px;
-display: block;
-}
-
-.timeline-content-side h3 {
-font-family: 'Playfair Display', serif;
-color: #043927; 
-font-size: 2.2rem;
-margin: 0 0 10px 0;
-line-height: 1.1;
-}
-
-.timeline-content-side p {
-font-family: 'Georgia', serif;
-font-size: 16px;
-color: #666;
-line-height: 1.5;
-font-style: italic;
-margin: 0;
-}
-
-/* --- ALTERNATING SIDES LOGIC (HUGGING THE LINE) --- */
-
-/* NORMAL ROW (Text Left, Image Right) */
-/* Actually in your code: Content is 1st div, Image is 2nd div */
-.timeline-row.normal {
-flex-direction: row;
-}
-.timeline-row.normal .timeline-content-side {
-text-align: right; 
-padding-right: 30px; /* Push text closer to line */
-}
-/* Align image to START (Left) to hug the center line */
-.timeline-row.normal .timeline-image-side {
-justify-content: flex-start; 
-padding-left: 30px; /* Push image closer to line */
-}
-
-/* REVERSE ROW (Image Left, Text Right) */
-.timeline-row.reverse {
-flex-direction: row-reverse;
-}
-.timeline-row.reverse .timeline-content-side {
-text-align: left; 
-padding-left: 30px; /* Push text closer to line */
-}
-/* Align image to END (Right) to hug the center line */
-.timeline-row.reverse .timeline-image-side {
-justify-content: flex-end; 
-padding-right: 30px; /* Push image closer to line */
-}
 
 
 /* iPhone 15 Plus Fix: Nudge the RSVP up on mobile screens */
@@ -261,77 +122,7 @@ text-align: center;
 gap: 8px !important;
 }
 
-.timeline-container {
-padding: 40px 5px !important; 
-width: 100% !important;
-}
 
-/* 2. THE LINE: Stay perfectly in the center */
-.timeline-container::before {
-left: 50% !important;
-transform: translateX(-50%);
-}
-
-/* 3. THE SIDES: Force them to be exactly half the screen */
-.timeline-content-side, 
-.timeline-image-side {
-width: 50% !important;
-box-sizing: border-box; /* Ensures padding doesn't break the layout */
-}
-
-/* 4. SHRINK THE IMAGES significantly */
-.timeline-image-side img {
-max-width: 70px !important; /* Much smaller to fit half-screen */
-max-height: 70px !important;
-}
-
-/* 5. SHRINK THE TEXT to prevent wrapping issues */
-.timeline-content-side h3 {
-font-size: 1.1rem !important; /* Smaller header */
-margin-bottom: 5px !important;
-}
-.timeline-content-side p {
-font-size: 0.7rem !important; /* Smaller body text */
-line-height: 1.3 !important;
-}
-.event-time {
-font-size: 9px !important; /* Tiny time label */
-}
-
-/* 6. TIGHTEN THE GAPS (Crucial for the split look) */
-
-/* Normal Row (Text Left, Image Right) */
-.timeline-row.normal .timeline-content-side {
-padding-right: 15px !important; /* Only 15px gap from line */
-text-align: right !important;
-}
-.timeline-row.normal .timeline-image-side {
-padding-left: 15px !important;
-justify-content: flex-start !important;
-}
-
-/* Reverse Row (Image Left, Text Right) */
-.timeline-row.reverse .timeline-content-side {
-padding-left: 15px !important;
-text-align: left !important;
-}
-.timeline-row.reverse .timeline-image-side {
-padding-right: 15px !important;
-justify-content: flex-end !important;
-}
-
-/* 7. CENTER DOT */
-.center-dot {
-width: 12px !important; /* Slightly smaller dot */
-height: 12px !important;
-border-width: 2px !important;
-left: 50% !important;
-}
-
-/* --- YOUR EXISTING MOBILE FIXES BELOW (Preserved) --- */
-}
-
-/* This locks the site vertically and prevents side-scrolling */
 
 
 body, html { 
@@ -1238,49 +1029,6 @@ GET DIRECTIONS
 </div>
 </section>
 
-    <section id="timeline">
-        <div class="reveal-on-scroll" style="max-width: 1000px; margin: 0 auto; text-align: center;">
-            <h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(45px, 8vw, 60px); color: #043927; margin-bottom: 60px;">The Wedding Timeline</h2>
-        </div>
-        <div class="timeline-container">
-            <div class="timeline-row normal reveal-on-scroll">
-                <div class="timeline-content-side">
-                    <span class="event-time" id="config-tl-time-1">01:00 PM</span>
-                    <h3>The Ceremony</h3>
-                    <p id="config-tl-desc-1">Santuario de San Antonio Parish<br>McKinley Rd, Makati</p>
-                </div>
-                <div class="center-dot"></div>
-                <div class="timeline-image-side"><img src="church.png" alt="Church"></div>
-            </div>
-            <div class="timeline-row reverse reveal-on-scroll">
-                <div class="timeline-content-side">
-                    <span class="event-time" id="config-tl-time-2">04:00 PM</span>
-                    <h3>Cocktail Hour</h3>
-                    <p id="config-tl-desc-2">The Blue Leaf Foyer<br>A time for toasts & conversations</p>
-                </div>
-                <div class="center-dot"></div>
-                <div class="timeline-image-side"><img src="cocktail.png" alt="Toast"></div>
-            </div>
-            <div class="timeline-row normal reveal-on-scroll">
-                <div class="timeline-content-side">
-                    <span class="event-time" id="config-tl-time-3">05:00 PM</span>
-                    <h3>Dinner & Reception</h3>
-                    <p id="config-tl-desc-3">The Blue Leaf Main Hall<br>Grand Entrance of the Couple</p>
-                </div>
-                <div class="center-dot"></div>
-                <div class="timeline-image-side"><img src="reception.png" alt="Dinner"></div>
-            </div>
-            <div class="timeline-row reverse reveal-on-scroll">
-                <div class="timeline-content-side">
-                    <span class="event-time" id="config-tl-time-4">07:00 PM</span>
-                    <h3>The After Party</h3>
-                    <p id="config-tl-desc-4">Dancing Under the Stars<br>Drinks & Late Night Snacks</p>
-                </div>
-                <div class="center-dot"></div>
-                <div class="timeline-image-side"><img src="party.png" alt="Music"></div>
-            </div>
-        </div>
-    </section>
 
 
 <section id="dress-code" style="min-height: 100vh; display: flex; align-items: center; justify-content: center; background-color: #043927; padding: 60px 20px;">
@@ -1418,76 +1166,6 @@ We invite our guests to celebrate with us in this color
 </section>
 
 
-    <section id="reminders" style="padding: 80px 20px; background-color: #fdf0f5;">
-        <div class="reveal-on-scroll" style="max-width: 1100px; margin: 0 auto;">
-            
-            <h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(45px, 8vw, 60px); color: #043927; margin-bottom: 80px; text-align: center;">Important Reminders</h2>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 60px 40px;">
-                
-                <div>
-                    <div style="text-align: center; margin-bottom: 15px;">
-                        <span style="font-family: 'Montserrat', sans-serif; font-size: 30px; color: #d4af37; font-weight: 700; opacity: 0.4; display: block;">01</span>
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #043927; font-weight: 700; margin-top: 5px;">RSVP</h3>
-                    </div>
-                    <p style="font-family: 'Georgia', serif; font-size: 14px; color: #043927; line-height: 1.8; text-align: justify;">
-                        Kindly respond by <strong id="config-rsvp-deadline">October 1st, 2027</strong>. To ensure a seamless dining experience for all our guests, we are unable to accommodate late RSVPs or any changes to the guest list after this date.
-                    </p>
-                </div>
-
-                <div>
-                    <div style="text-align: center; margin-bottom: 15px;">
-                        <span style="font-family: 'Montserrat', sans-serif; font-size: 30px; color: #d4af37; font-weight: 700; opacity: 0.4; display: block;">02</span>
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #043927; font-weight: 700; margin-top: 5px;">Strictly by Invitation</h3>
-                    </div>
-                    <p style="font-family: 'Georgia', serif; font-size: 14px; color: #043927; line-height: 1.8; text-align: justify;">
-                        We love your little ones, but due to venue restrictions, this will be an <strong>adults-only affair</strong>. We are unable to accommodate children or additional guests not specifically named on the invitation.
-                    </p>
-                </div>
-
-                <div>
-                    <div style="text-align: center; margin-bottom: 15px;">
-                        <span style="font-family: 'Montserrat', sans-serif; font-size: 30px; color: #d4af37; font-weight: 700; opacity: 0.4; display: block;">03</span>
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #043927; font-weight: 700; margin-top: 5px;">Punctuality</h3>
-                    </div>
-                    <p style="font-family: 'Georgia', serif; font-size: 14px; color: #043927; line-height: 1.8; text-align: justify;">
-                        The ceremony begins promptly at <strong id="config-reminder-time">1:00 PM</strong>. We request that you arrive by 12:30 PM to be seated comfortably. The church doors will be closed once the entourage enters.
-                    </p>
-                </div>
-
-                <div>
-                    <div style="text-align: center; margin-bottom: 15px;">
-                        <span style="font-family: 'Montserrat', sans-serif; font-size: 30px; color: #d4af37; font-weight: 700; opacity: 0.4; display: block;">04</span>
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #043927; font-weight: 700; margin-top: 5px;">Dress Code</h3>
-                    </div>
-                    <p style="font-family: 'Georgia', serif; font-size: 14px; color: #043927; line-height: 1.8; text-align: justify;">
-                        Formal Attire. We would love for you to dress in our celebration palette. Please see our dress code section for details. We kindly ask that guests reserve wearing white for the bride.
-                    </p>
-                </div>
-
-                <div>
-                    <div style="text-align: center; margin-bottom: 15px;">
-                        <span style="font-family: 'Montserrat', sans-serif; font-size: 30px; color: #d4af37; font-weight: 700; opacity: 0.4; display: block;">05</span>
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #043927; font-weight: 700; margin-top: 5px;">Parking & Logistics</h3>
-                    </div>
-                    <p style="font-family: 'Georgia', serif; font-size: 14px; color: #043927; line-height: 1.8; text-align: justify;">
-                        For your convenience and ease, complimentary valet parking is available at the main entrance of the Blue Leaf McKinley. Please allow extra time for drop-off.
-                    </p>
-                </div>
-
-                <div>
-                    <div style="text-align: center; margin-bottom: 15px;">
-                        <span style="font-family: 'Montserrat', sans-serif; font-size: 30px; color: #d4af37; font-weight: 700; opacity: 0.4; display: block;">06</span>
-                        <h3 style="font-family: 'Montserrat', sans-serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #043927; font-weight: 700; margin-top: 5px;">The Hashtag</h3>
-                    </div>
-                    <p style="font-family: 'Georgia', serif; font-size: 14px; color: #043927; line-height: 1.8; text-align: justify;">
-                        Share the love! We would love to see the celebration through your eyes. Please tag your photos on social media with our official hashtag: <strong class="config-hashtag-text">#MarielGetsJasper</strong>
-                    </p>
-                </div>
-
-            </div>
-        </div>
-    </section>
 
 <section id="gifting" style="padding: 80px 20px; text-align: center; background-color: #ffffff;">
 <div class="reveal-on-scroll" style="max-width: 1100px; margin: 0 auto;">
@@ -1577,10 +1255,8 @@ timeCountdown: "2:00 PM",           // Used for the countdown timer logic
 timeText: "At Two O'Clock in the Afternoon",
 
 churchName: "Santuario de San Antonio Parish",
-    churchNameShort: "Santuario de San Antonio Parish", // Used in timeline
 churchAddress: "3117 McKinley Rd, Forbes Park, Makati City",
 churchTime: "1:00 PM IN THE AFTERNOON",
-    churchStartTime: "1:00 PM",         // Used in reminders
 churchMap: "https://www.google.com/maps/search/?api=1&query=Santuario+de+San+Antonio+Parish+Forbes+Park",
 
 receptionName: "The Blue Leaf Mckinley",
@@ -1589,11 +1265,6 @@ receptionAddress: "100 Park Avenue, McKinley Hill Village, Taguig",
 receptionTime: "4:00 IN THE AFTERNOON",
 receptionMap: "https://www.google.com/maps/search/?api=1&query=The+Blue+Leaf+McKinley+Taguig",
 
-    // --- 3. Timeline Items ---
-    tlTime1: "01:00 PM", tlDesc1: "Santuario de San Antonio Parish<br>McKinley Rd, Makati",
-    tlTime2: "04:00 PM", tlDesc2: "The Blue Leaf Foyer<br>A time for toasts & conversations",
-    tlTime3: "05:00 PM", tlDesc3: "The Blue Leaf Main Hall<br>Grand Entrance of the Couple",
-    tlTime4: "07:00 PM", tlDesc4: "Dancing Under the Stars<br>Drinks & Late Night Snacks",
  
 
 // --- 4. Details & Tech ---
@@ -1639,7 +1310,6 @@ applyText('config-tl-time-3', CONFIG.tlTime3); applyText('config-tl-desc-3', CON
 applyText('config-tl-time-4', CONFIG.tlTime4); applyText('config-tl-desc-4', CONFIG.tlDesc4);
 
 applyText('config-rsvp-deadline', CONFIG.rsvpDeadline);
-    applyText('config-reminder-time', CONFIG.churchStartTime);
 applyClassText('config-hashtag-text', CONFIG.hashtag);
 applyClassText('config-couple-or', `${CONFIG.bride} or ${CONFIG.groom}`);
 
