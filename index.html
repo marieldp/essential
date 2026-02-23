@@ -697,6 +697,12 @@ margin-top: 0;
     background-size: cover;
     z-index: 0;
     transform: translateZ(0); /* Freezes the pixels so they can't jump */
+    animation: fadeInImage 1s ease-in-out forwards;
+    opacity: 0;
+}
+@keyframes fadeInImage {
+    from { opacity: 0; }
+    to { opacity: 1; }
 }
 
 </style>
