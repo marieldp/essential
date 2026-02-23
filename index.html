@@ -173,7 +173,13 @@ gap: 8px !important;
 
 
 /* 1. DEFAULT STATE: Locked for the Envelope */
-body, html { 
+/* 1. HTML Base */
+html {
+    overflow-x: hidden;
+}
+
+/* 2. DEFAULT: Frozen for Envelope */
+body { 
     margin: 0; padding: 0; 
     background-color: #e5e0d8; 
     font-family: 'Montserrat', sans-serif; 
@@ -182,16 +188,12 @@ body, html {
     /* THE LOCK */
     overflow: hidden !important; 
     height: 100vh !important;
-    overflow-x: hidden;
 }
 
-/* 2. OPEN STATE: Unlocked for the Website */
+/* 3. OPEN: Fully Unlocked Native Scrolling */
 body.show-site, html.show-site {
-    /* Unlocks up/down scrolling automatically when the letter opens */
-    overflow-y: auto !important; 
-    /* Prevents side-to-side wobble */
+    overflow: visible !important; 
     overflow-x: hidden !important; 
-    /* Allows natural scroll length to fix the "double scroll" */
     height: auto !important;
     min-height: 100vh;
 }
@@ -1448,19 +1450,20 @@ function handleMusic(play, event) {
 setTimeout(() => {
         const main = document.getElementById('main-site');
         
-        // 1. Kill any smooth scrolling so the jump is invisible
+        // 1. Kill smooth scrolling temporarily
         document.documentElement.style.scrollBehavior = 'auto';
         
         // 2. Un-hide the website
         if(main) main.style.display = 'block';
         
-        // 3. Force the absolute top instantly
+        // 3. Force the jump to the top
         window.scrollTo(0, 0);
         
-        // 4. Unlock the scrollbar
+        // 4. THE FIX: Unlock BOTH the body and the html layers!
         document.body.classList.add('show-site');
+        document.documentElement.classList.add('show-site');
 
-        // 5. Bring smooth scrolling back AFTER the jump is done
+        // 5. Bring smooth scrolling back safely
         setTimeout(() => {
             document.documentElement.style.scrollBehavior = 'smooth';
         }, 50);
