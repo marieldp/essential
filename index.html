@@ -477,8 +477,10 @@ background: url('6938.jpg') center/cover no-repeat;
 clip-path: polygon(0 0, 100% 0, 50% 100%);
 will-change: transform;
 backface-visibility: hidden; /* This is crucial for laptops to keep the "back" of the flap clean */
-transform: translateZ(1px); 
-backface-visibility: hidden;
+transform: translateZ(2px);
+backface-visibility: visible !important; /* Switch back to visible if it's disappearing */
+z-index: 10; /* Force it to the front */
+transform-origin: top;
 }
 
 /* 8. THE SEAL (Always on top) */
