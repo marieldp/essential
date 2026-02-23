@@ -176,21 +176,17 @@ gap: 8px !important;
 
 
 /* 1. DEFAULT STATE: Locked for the Envelope */
-/* 1. HTML Base */
 html {
     overflow-x: hidden;
+    scrollbar-gutter: stable; 
 }
 
-/* 2. DEFAULT: Frozen for Envelope */
 body { 
     margin: 0; padding: 0; 
-    background-color: #e5e0d8; 
+    background-color: #043927; /* Solid color only - No image here! */
     font-family: 'Montserrat', sans-serif; 
     color: var(--text); 
-    
-    /* THE LOCK */
-    overflow: hidden !important; 
-    height: 100vh !important;
+    overflow-x: hidden;
 }
 
 /* 2. OPEN STATE: Unlocked for the Website */
@@ -286,10 +282,12 @@ transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .envelope {
-position: relative; width: 90vw; height: 60vw;
-max-width: 600px; max-height: 400px;
-z-index: 10 !important; perspective: 1500px; 
-transform: translateZ(0); /* Forces the Laptop GPU to take over */
+    position: relative; 
+    width: 90vw; height: 60vw;
+    max-width: 600px; max-height: 400px;
+    z-index: 10 !important; 
+    perspective: 1500px;
+    transform-style: preserve-3d;
 }
 
 /* 1. BACKING */
@@ -448,16 +446,18 @@ background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/s
 background-size: 100% 100%;
 }
 /* 7. TOP FLAP CONTAINER */
-/* 1. TOP FLAP ANIMATION */
 .flap-container {
-position: absolute; top: 0; left: 0; width: 100%; height: 60%;
-z-index: 10 !important; transform-origin: top; transform-style: preserve-3d;
-transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s;
-animation: flap-bob 4s ease-in-out infinite;
-filter: drop-shadow(0 5px 6px rgba(0,0,0,0.3));
-will-change: transform;
-transform: translateZ(0);
+    position: absolute; top: 0; left: 0; width: 100%; height: 60%;
+    z-index: 10 !important; 
+    transform-origin: top; 
+    transform-style: preserve-3d;
+    /* YOUR PERFECT TRANSITION: Includes the z-index delay */
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s;
+    animation: flap-bob 4s ease-in-out infinite;
+    filter: drop-shadow(0 5px 6px rgba(0,0,0,0.3));
+    transform: translateZ(0);
 }
+
 /* When the envelope is open, the flap MUST stay open */
 .open .top-flap {
     transform: rotateX(180deg) translateZ(1px) !important;
@@ -466,11 +466,11 @@ transform: translateZ(0);
 }
 
 .open .flap-container { 
-animation: none !important; 
-transform: rotateX(160deg); 
-z-index: 1 !important; 
-/* THE FIX: Flap takes 1.2s to open. Z-index waits 0.5s before dropping behind the letter so it doesn't clip! */
-transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.5s;
+    animation: none !important; 
+    transform: rotateX(160deg); 
+    z-index: 1 !important; 
+    /* THE FIX: Wait 0.5s before dropping behind so it doesn't clip */
+    transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.5s;
 }
 .top-flap {
 width: 100%; height: 100%;
@@ -492,10 +492,8 @@ width: 100%;
 }
 /* Pushes the seal behind the flap paper as it opens */
 .open .seal-bob-wrapper {
-z-index: -1 !important;
-/* The 0.4s delay ensures it swaps to the back exactly when the flap is facing the ceiling so the transition is invisible */
-transition: z-index 0s 0.4s !important; 
-
+    z-index: -1 !important;
+    transition: z-index 0s 0.4s !important; 
 }
 #seal img { width: 100%; display: block; }    
 .seal-bob-wrapper { 
@@ -641,10 +639,14 @@ perspective: 1000px;
 
 /* 2. Make the letter occupy more space inside the envelope */
 .letter {
-width: 90%;       /* Wider paper */
-height: 85%;      /* Taller paper (was 70%) */
-left: 5%;         /* Re-center it: (100% - 90%) / 2 = 5% */
-padding: 10px;    /* Reduce padding so content fits */
+    position: absolute;
+    bottom: 0; left: 15%; width: 70%; height: 70%; 
+    background: white;
+    z-index: 2 !important; 
+    transform: translateY(0) translateZ(1px); /* translateZ fixes transparency */
+    transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s;
+    opacity: 0;
+    visibility: hidden;
 }
 
 /* 3. Shrink the Title Text */
@@ -667,8 +669,9 @@ font-size: 0.7rem;
 
 /* 6. Slide it UP HIGHER on mobile */
 .open .letter {
-/* Move up 60% instead of 50% to ensure buttons clear the pocket */
-transform: translateY(-60%); 
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(-50%) translateZ(1px);
 }
 
 
@@ -697,28 +700,23 @@ margin-top: 0;
 }
 
 /* The ONLY instruction for the landing section */
+/* 2. Landing Hero - Stops the Mobile Vertical Jump */
 #landing-hero {
-    height: 100svh !important; /* Locks height permanently */
+    height: 100svh !important; /* svh is the jump-killer for mobile */
     width: 100%;
     position: relative;
     overflow: hidden;
     background-color: #043927;
 }
 
-/* The ONLY instruction for the photo */
 #landing-hero::before {
     content: "";
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
+    top: 0; left: 0; width: 100%; height: 100%;
     background: url('1.jpg') no-repeat center top;
     background-size: cover;
     z-index: 0;
-    transform: translateZ(0); /* Freezes the pixels so they can't jump */
-    animation: fadeInImage 1s ease-in-out forwards;
-    opacity: 0;
+    transform: translateZ(0); /* Hardware acceleration */
 }
 @keyframes fadeInImage {
     from { opacity: 0; }
@@ -1439,12 +1437,13 @@ function handleMusic(play, event) {
     const mBtn = document.getElementById('musicBtn');
     const audio = document.getElementById('bg-music');
 
-    if (audio) audio.currentTime = 4;
-
     if (mBtn) {
         mBtn.style.display = 'flex'; 
         if (play) {
-            if (audio) audio.play().catch(e => console.log("Audio blocked"));
+            if (audio) {
+                audio.currentTime = 4;
+                audio.play().catch(e => console.log("Audio blocked"));
+            }
             mBtn.classList.add('playing'); 
         } else {
             if (audio) audio.pause();
@@ -1452,30 +1451,18 @@ function handleMusic(play, event) {
         }
     }
 
-    const env = document.getElementById('envelope-wrapper');
-    if(env) env.classList.add('wrapper-exit');
-
-setTimeout(() => {
-        const main = document.getElementById('main-site');
+    // Exit Envelope
+    document.getElementById('envelope-wrapper').classList.add('wrapper-exit');
+    
+    setTimeout(() => {
+        document.getElementById('main-site').style.display = 'block';
         
-        // 1. Kill smooth scrolling temporarily
-        document.documentElement.style.scrollBehavior = 'auto';
-        
-        // 2. Un-hide the website
-        if(main) main.style.display = 'block';
-        
-        // 3. Force the jump to the top
-        window.scrollTo(0, 0);
-        
-        // 4. THE FIX: Unlock BOTH the body and the html layers!
+        // UNLOCK SCROLLING
         document.body.classList.add('show-site');
-        document.documentElement.classList.add('show-site');
-
-        // 5. Bring smooth scrolling back safely
-        setTimeout(() => {
-            document.documentElement.style.scrollBehavior = 'smooth';
-        }, 50);
-
+        document.documentElement.classList.add('show-site'); // The missing key
+        
+        window.scrollTo(0, 0); // Force top
+        
         if (typeof setupMusicObserver === "function") {
             setupMusicObserver(); 
         }
