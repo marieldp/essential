@@ -8,6 +8,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300;400;700&family=Pinyon+Script&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <style>
+/* ESSENTIAL PACKAGE RSVP BUTTON */
+.essential-rsvp-btn {
+    display: inline-block;
+    background-color: #043927;
+    color: #d4af37 !important;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    text-decoration: none;
+    padding: 16px 45px;
+    border-radius: 30px;
+    border: 1.5px solid #d4af37;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.essential-rsvp-btn:hover {
+    background-color: #d4af37;
+    color: #043927 !important;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+    transform: translateY(-3px); /* Gives it a slight "lift" when tapped/hovered */
+}
     
 #gifting img {
     width: 100% !important;
@@ -489,82 +513,6 @@ transform: translateY(-3px);
 }
 .hidden { display: none !important; }
 
-/* --- RSVP FORM STYLING --- */
-.rsvp-card {
-background: #fff;
-padding: 40px;
-max-width: 600px;
-margin: 0 auto;
-border: 1px solid var(--gold); /* Adds a classy gold border */
-box-shadow: 0 15px 45px rgba(4, 57, 39, 0.15);
-text-align: center; /* Centers the "Hi [Name]" */
-display: flex;
-flex-direction: column;
-}
-
-/* Elegant Header */
-.rsvp-card h2 {
-font-family: 'Great Vibes', cursive;
-color: var(--accent);
-font-size: 3rem;
-margin-bottom: 20px;
-}
-
-/* Labels */
-.rsvp-card label {
-font-family: 'Montserrat', sans-serif;
-font-size: 0.9rem;
-text-transform: uppercase;
-letter-spacing: 2px;
-color: var(--text);
-margin-bottom: 8px;
-text-align: left; /* Labels look better aligned left */
-width: 100%;
-display: block;
-}
-
-/* Inputs & Selects */
-.rsvp-card input, 
-.rsvp-card select, 
-.rsvp-card textarea {
-width: 100%;
-padding: 12px;
-margin-bottom: 20px;
-border: 1px solid #ddd;
-border-radius: 4px;
-font-family: 'Montserrat', sans-serif;
-font-size: 1rem;
-background: #fcfaf7; /* Slight off-white to match theme */
-color: var(--accent);
-box-sizing: border-box; /* Prevents padding from breaking width */
-}
-
-/* Focus State (When you click an input) */
-.rsvp-card input:focus, 
-.rsvp-card select:focus, 
-.rsvp-card textarea:focus {
-outline: none;
-border-color: var(--gold);
-background: white;
-}
-
-/* The Confirm Button */
-.rsvp-card button {
-background-color: var(--accent);
-color: white;
-font-family: 'Montserrat', sans-serif;
-text-transform: uppercase;
-letter-spacing: 2px;
-padding: 15px 30px;
-border: none;
-cursor: pointer;
-margin-top: 10px;
-transition: background 0.3s ease;
-}
-
-.rsvp-card button:hover {
-background-color: var(--gold);
-}
 
 /* --- THE GUEST LABEL (On top of the pocket) --- */
 #envelope-label {
@@ -1200,13 +1148,25 @@ z-index: 0;
         </div>
     </section>
 
-    <section style="padding: 80px 20px; background: white; text-align: center;">
-        <div class="reveal-on-scroll" style="max-width: 500px; margin: 0 auto;">
-            <div id="loading" class="hidden">Checking invitation...</div>
-            <div id="content" class="hidden"></div>
-            <div id="error-msg" class="hidden rsvp-card"><p>Guest not found. Please use the original link.</p></div>
-        </div>
-    </section>
+<section id="rsvp-section" class="reveal-on-scroll" style="padding: 80px 20px; text-align: center; background-color: #fff;">
+    <div style="max-width: 600px; margin: 0 auto; padding: 50px 20px; border: 1.5px solid #d4af37; border-radius: 15px; background: rgba(244, 207, 224, 0.2); box-shadow: 0 10px 30px rgba(0,0,0,0.05);">
+        
+        <h2 style="font-family: 'Pinyon Script', cursive; font-size: clamp(45px, 8vw, 65px); color: #043927; margin-bottom: 15px; line-height: 1;">
+            Kindly Reply
+        </h2>
+        
+        <p style="font-family: 'Montserrat', sans-serif; font-size: 14px; color: #555; letter-spacing: 1px; margin-bottom: 35px; line-height: 1.6;">
+            We would love for you to join us on our special day. <br>
+            Please let us know if you can make it by<br>
+            <strong style="color: #043927; font-size: 16px; font-weight: 700;">October 15, 2027</strong>
+        </p>
+
+        <a href="YOUR_GOOGLE_FORM_LINK_HERE" target="_blank" class="essential-rsvp-btn">
+            RSVP HERE
+        </a>
+
+    </div>
+</section>
 
 
 
