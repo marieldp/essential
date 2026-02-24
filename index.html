@@ -190,7 +190,7 @@ html {
 
 body { 
     margin: 0; padding: 0; 
-    background-color: #043927; /* Solid color only - No image here! */
+    background-color: #f4f1ea; /* Solid color only - No image here! */
     font-family: 'Montserrat', sans-serif; 
     color: var(--text); 
     overflow-x: hidden;
@@ -632,13 +632,12 @@ font-size: 0.7rem;
 
 /* This forces the landing page to be a perfect 'window' */
 #main-site section:first-of-type {
-height: 100dvh !important;
-width: 100%;
-position: relative;
-/* This is the secret: it cuts off anything outside the 100dvh box */
-clip-path: inset(0 0 0 0); 
-overflow: hidden;
-background-color: #043927; /* Matches your theme for safety */
+    height: 100dvh !important;
+    width: 100%;
+    position: relative;
+    clip-path: inset(0 0 0 0); 
+    overflow: hidden;
+    background-color: #f4f1ea; /* Swapped to beige to stop the green flash */
 }
 
 /* Ensure the NEXT section starts exactly where the photo ends */
