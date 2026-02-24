@@ -18,6 +18,22 @@
         letter-spacing: 1px;
     }
 }
+
+/* This locks the section height to prevent the "jump" */
+#rsvp {
+    min-height: 500px; /* Adjust this number to match your card's height */
+    display: flex;
+    align-items: center; /* Keeps the card centered vertically */
+    justify-content: center;
+}
+
+/* Ensures the container doesn't collapse during the switch */
+#rsvp-form-container, 
+#rsvp-search-container {
+    width: 100%;
+    max-width: 450px; /* Keeps your card width consistent */
+    margin: 0 auto;
+}
     
 #gifting img {
 width: 100% !important;
