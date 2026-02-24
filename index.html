@@ -154,11 +154,7 @@ font-size: 42px !important;
         max-width: 300px;
         margin: 0 auto 25px auto;
     }
-    /* 1. FIX THE MOBILE IMAGE JUMP */
-    #main-site section:first-of-type, 
-    #landing-hero {
-        height: 100svh !important; /* Locks the height so scrolling doesn't resize the image */
-    }
+
     #landing-hero::before {
         transform: translateZ(0); /* Hardware acceleration to stop flicker */
     }
@@ -680,11 +676,13 @@ content: "";
 #landing-hero::before {
     content: "";
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: url('1.jpg') no-repeat center top;
     background-size: cover;
     z-index: 0;
-    transform: translateZ(0); /* Hardware acceleration */
 }
 @keyframes fadeInImage {
     from { opacity: 0; }
