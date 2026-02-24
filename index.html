@@ -420,7 +420,6 @@ transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)
 
 .open .flap-container { 
     animation: none !important; 
-    transform: rotateX(160deg); 
     z-index: 1 !important; 
     transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.5s;
 }
@@ -1660,12 +1659,7 @@ setDisplay("minutes", minutes);
 setDisplay("seconds", seconds);
 }
 
-// THE TRIGGER (Safe and Separate)
-document.addEventListener('DOMContentLoaded', () => {
-console.log("Countdown starting...");
-setInterval(updateCountdown, 1000);
-updateCountdown();
-});
+
 
 
 
