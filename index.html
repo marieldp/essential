@@ -411,12 +411,7 @@ transition: opacity 0.8s ease-out, transform 0.8s cubic-bezier(0.22, 1, 0.36, 1)
     filter: drop-shadow(0 5px 6px rgba(0,0,0,0.3));
 }
 
-/* When the envelope is open, the flap MUST stay open */
-.open .top-flap {
-    transform: rotateX(180deg) translateZ(1px) !important;
-    z-index: 1 !important; /* Keep it behind the letter but visibly "up" */
-    transition: none !important; /* This stops it from "animating" back to closed */
-}
+
 
 .open .flap-container { 
     animation: none !important; 
