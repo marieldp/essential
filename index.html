@@ -1169,18 +1169,24 @@ GET DIRECTIONS
 
 <section style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding: 100px 20px; background: url('1.jpg') center/cover no-repeat; text-align: center;">
 <div class="reveal-on-scroll" style="width: 100%; max-width: 500px; margin: 0 auto;">        
-        <div id="rsvp-search-container" class="rsvp-card">
-            <h2 style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: 45px; letter-spacing: 8px; color: #043927; margin-bottom: 15px;">RSVP</h2>
-            <p style="font-family: 'Montserrat'; font-size: 11px; margin-bottom: 20px; letter-spacing: 2px; color: #666;">
-                ENTER YOUR FULL NAME TO FIND YOUR INVITATION
-            </p>
-            <input type="text" id="search-name-input" placeholder="Full Name" onkeydown="if(event.key === 'Enter') checkGuest()
-                   style="width: 100%; padding: 12px; border: 1px solid #d4af37; border-radius: 4px; margin-bottom: 15px; text-align: center; font-family: 'Montserrat';">
-            <button onclick="findInvitation()" id="search-btn">Find My Invitation</button>
-            <p id="search-error" style="color: #c0392b; font-size: 12px; margin-top: 10px; display: none; font-family: 'Montserrat';">
-                Name not found. Please check your spelling or contact the couple.
-            </p>
-        </div>
+<div id="rsvp-search-container" class="rsvp-card">
+    <h2 style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: 45px; letter-spacing: 8px; color: #043927; margin-bottom: 15px;">RSVP</h2>
+    <p style="font-family: 'Montserrat'; font-size: 11px; margin-bottom: 20px; letter-spacing: 2px; color: #666;">
+        ENTER YOUR FULL NAME TO FIND YOUR INVITATION
+    </p>
+    
+    <input type="text" 
+           id="search-name-input" 
+           placeholder="Full Name" 
+           onkeydown="if(event.key === 'Enter') findInvitation()"
+           style="width: 100%; padding: 12px; border: 1px solid #d4af37; border-radius: 4px; margin-bottom: 15px; text-align: center; font-family: 'Montserrat';">
+    
+    <button onclick="findInvitation()" id="search-btn">Find My Invitation</button>
+    
+    <p id="search-error" style="color: #c0392b; font-size: 12px; margin-top: 10px; display: none; font-family: 'Montserrat';">
+        Name not found. Please check your spelling or contact the couple.
+    </p>
+</div>
 
         <div id="rsvp-form-container" class="hidden"></div>
 
