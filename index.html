@@ -508,7 +508,13 @@ box-shadow: 0 15px 45px rgba(4, 57, 39, 0.15);
 text-align: center; /* Centers the "Hi [Name]" */
 display: flex;
 flex-direction: column;
+
+/* THE FIX: Force all cards to be the exact same baseline height */
+min-height: 450px; 
+justify-content: center; /* This keeps the text perfectly centered inside */
+    
 }
+
 
 /* Elegant Header */
 .rsvp-card h2 {
@@ -1184,7 +1190,7 @@ GET DIRECTIONS
 </section>
 
 <section style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding: 100px 20px; background: url('1.jpg') center/cover no-repeat; text-align: center;">
-<div class="reveal-on-scroll" style="width: 100%; max-width: 500px; margin: 0 auto; min-height: 380px;">
+<div class="reveal-on-scroll" style="width: 100%; max-width: 500px; margin: 0 auto;">
     <div id="rsvp-search-container" class="rsvp-card">
     <h2 style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: 45px; letter-spacing: 8px; color: #043927; margin-bottom: 15px;">RSVP</h2>
     <p style="font-family: 'Montserrat'; font-size: 11px; margin-bottom: 20px; letter-spacing: 2px; color: #666;">
