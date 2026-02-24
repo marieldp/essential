@@ -20,6 +20,7 @@
 
     .rsvp-card {
         min-height: 480px; /* Taller baseline for phones so it never has to stretch */
+        padding: 30px 15px; /* Less padding on phones gives the text more room */
     }
 }
 
@@ -516,6 +517,7 @@ flex-direction: column;
 /* THE FIX: Force all cards to be the exact same baseline height */
 min-height: 450px; 
 justify-content: center; /* This keeps the text perfectly centered inside */
+box-sizing: border-box; /* THIS KEEPS IT CENTERED */
     
 }
 
