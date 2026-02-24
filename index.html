@@ -518,6 +518,10 @@ flex-direction: column;
 min-height: 450px; 
 justify-content: center; /* This keeps the text perfectly centered inside */
 box-sizing: border-box; /* THIS KEEPS IT CENTERED */
+
+position: relative; 
+overflow: hidden; 
+padding-top: 80px; /* Pushes the text down slightly so the flower fits */
     
 }
 
@@ -1198,6 +1202,7 @@ GET DIRECTIONS
 <section style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding: 100px 20px; background: url('1.jpg') center/cover no-repeat; text-align: center;">
 <div class="reveal-on-scroll" style="width: 100%; max-width: 500px; margin: 0 auto;">
     <div id="rsvp-search-container" class="rsvp-card">
+    <img src="flower.png" alt="Floral Top" style="position: absolute; top: -15px; left: 0; width: 100%; height: auto; transform: rotate(180deg) scale(1.05); pointer-events: none; z-index: 0;">
     <h2 style="font-family: 'Playfair Display', serif; font-weight: 700; font-size: 45px; letter-spacing: 8px; color: #043927; margin-bottom: 15px;">RSVP</h2>
     <p style="font-family: 'Montserrat'; font-size: 11px; margin-bottom: 20px; letter-spacing: 2px; color: #666;">
         ENTER YOUR FULL NAME TO FIND YOUR INVITATION
@@ -1220,6 +1225,7 @@ GET DIRECTIONS
 
         <div id="rsvp-success-container" class="hidden">
             <div class="rsvp-card">
+            <img src="flower.png" alt="Floral Top" style="position: absolute; top: -15px; left: 0; width: 100%; height: auto; transform: rotate(180deg) scale(1.05); pointer-events: none; z-index: 0;">
                 <h2 style="font-size: 2.5rem; color: var(--accent);">Thank you!</h2>
                 <p id="success-message" style="font-family: 'Montserrat'; margin-bottom: 20px;"></p>
                 <div style="border-top: 1px solid #eee; padding-top: 20px;">
