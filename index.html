@@ -287,7 +287,6 @@ transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     max-width: 600px; max-height: 400px;
     z-index: 10 !important; 
     perspective: 1500px;
-    transform-style: preserve-3d;
 }
 
 /* 1. BACKING */
@@ -451,11 +450,10 @@ background-size: 100% 100%;
     z-index: 10 !important; 
     transform-origin: top; 
     transform-style: preserve-3d;
-    /* YOUR PERFECT TRANSITION: Includes the z-index delay */
     transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s;
     animation: flap-bob 4s ease-in-out infinite;
     filter: drop-shadow(0 5px 6px rgba(0,0,0,0.3));
-    transform: translateZ(0);
+    /* DELETED the translateZ that broke the flap */
 }
 
 /* When the envelope is open, the flap MUST stay open */
@@ -469,7 +467,6 @@ background-size: 100% 100%;
     animation: none !important; 
     transform: rotateX(160deg); 
     z-index: 1 !important; 
-    /* THE FIX: Wait 0.5s before dropping behind so it doesn't clip */
     transition: transform 1.2s cubic-bezier(0.4, 0, 0.2, 1), z-index 0s 0.5s;
 }
 .top-flap {
@@ -639,11 +636,20 @@ perspective: 1000px;
 
 /* 2. Make the letter occupy more space inside the envelope */
 .letter {
-    position: absolute;
+position: absolute;
     bottom: 0; left: 15%; width: 70%; height: 70%; 
     background: white;
     z-index: 2 !important; 
-    transform: translateY(0) translateZ(1px); /* translateZ fixes transparency */
+    border: 1px solid var(--gold); 
+    display: flex; flex-direction: column;
+    justify-content: center !important; 
+    align-items: center; text-align: center;
+    padding-top: 20px !important; padding-bottom: 60px !important; 
+    padding-left: 20px; padding-right: 20px; box-sizing: border-box;
+    box-shadow: 0 -5px 15px rgba(0,0,0,0.05);
+    
+    /* DELETED the translateZ that messed up the stacking */
+    transform: translateY(0); 
     transition: transform 1.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s;
     opacity: 0;
     visibility: hidden;
@@ -671,7 +677,7 @@ font-size: 0.7rem;
 .open .letter {
     visibility: visible;
     opacity: 1;
-    transform: translateY(-50%) translateZ(1px);
+    transform: translateY(-50%)
 }
 
 
@@ -699,14 +705,14 @@ z-index: 10;
 margin-top: 0;
 }
 
-/* The ONLY instruction for the landing section */
-/* 2. Landing Hero - Stops the Mobile Vertical Jump */
 #landing-hero {
-    height: 100svh !important; /* svh is the jump-killer for mobile */
-    width: 100%;
-    position: relative;
-    overflow: hidden;
-    background-color: #043927;
+content: "";
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: url('1.jpg') no-repeat center top;
+    background-size: cover;
+    z-index: 0;
+    transform: translateZ(0); /* This one is safe because it doesn't flip */
 }
 
 #landing-hero::before {
