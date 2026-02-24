@@ -154,6 +154,26 @@ font-size: 42px !important;
         max-width: 300px;
         margin: 0 auto 25px auto;
     }
+    /* 1. FIX THE MOBILE IMAGE JUMP */
+    #main-site section:first-of-type, 
+    #landing-hero {
+        height: 100svh !important; /* Locks the height so scrolling doesn't resize the image */
+    }
+    #landing-hero::before {
+        transform: translateZ(0); /* Hardware acceleration to stop flicker */
+    }
+
+    /* 2. LOWER THE MUSIC BUTTON */
+    #musicBtn {
+        bottom: 12px !important; /* Pushes it closer to the bottom edge */
+        right: 12px !important;
+        transform: scale(0.85); /* Shrinks it just a tiny bit so it's less in the way */
+    }
+
+    /* 3. PULL THE LETTER HIGHER OUT OF THE POCKET */
+    .open .letter {
+        transform: translateY(-75%) !important; /* Increased from -60% to clear the taller pocket */
+    }
 }
 
 
