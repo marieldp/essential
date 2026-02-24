@@ -1489,7 +1489,7 @@ function togglePlusOneFields(canHaveP1) {
     const area = document.getElementById('plus-one-area');
     const attending = document.getElementById('attending-select').value;
     
-    if (attending === "Joyfully Accept" && canHaveP1) {
+    if (attending === "YES" && canHaveP1) {
         area.innerHTML = `
             <label style="margin-top:15px;">Will you bring a Plus One?</label>
             <select id="plus-one-choice">
