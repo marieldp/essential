@@ -1637,7 +1637,19 @@ setDisplay("seconds", seconds);
 
 
 
-
+// This targets ONLY the search input box
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('rsvp-name-input');
+    
+    if (searchInput) {
+        searchInput.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault(); // Prevents the page from refreshing
+                checkGuest();      // Runs your search function
+            }
+        });
+    }
+});
 
 
 </script>
